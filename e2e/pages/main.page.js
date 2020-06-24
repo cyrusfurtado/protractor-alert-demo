@@ -37,7 +37,7 @@ class MainPage extends BasePage {
 
     async handeConfirmNavigation() {
         await this.tabpanel.element(by.cssContainingText('li', 'Alert with OK & Cancel')).click();
-        browser.wait(this.isVisible(this.confirmContainer), 5000, 'confirm container not visible');
+        await browser.wait(this.isVisible(this.confirmContainer), 5000, 'confirm container not visible');
         await this.confirmContainer.element(by.css('button')).click();
         await browser.wait(this.isDialoguePresent(), 5000, 'confirm not visible');
         return browser.switchTo().alert();
@@ -46,7 +46,7 @@ class MainPage extends BasePage {
 
     async handePromptNavigation() {
         await this.tabpanel.element(by.cssContainingText('li', 'Alert with Textbox')).click();
-        browser.wait(this.isVisible(this.promptContainer), 5000, 'prompt container not visible');
+        await browser.wait(this.isVisible(this.promptContainer), 5000, 'prompt container not visible');
         await this.promptContainer.element(by.css('button')).click();
         await browser.wait(this.isDialoguePresent(), 5000, 'prompt not visible');
         return browser.switchTo().alert();
