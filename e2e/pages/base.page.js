@@ -12,7 +12,7 @@ export default class BasePage {
     }
 
     isLoaded() {
-        return browser.wait(this.pageLoaded(), this.timeout.md, 'waiting for load of ' + this.url);
+        return browser.wait(async () => await this.pageLoaded(), this.timeout.md, 'waiting for load of ' + this.url);
     }
 
     async goTo() {
@@ -22,5 +22,21 @@ export default class BasePage {
 
     isInDom(locator) {
         return this.EC.presenceOf(locator);
+    }
+
+    isNotInDom(locator) {
+        return this.EC.stalenessOf(locator);
+    }
+
+    isDialoguePresent() {
+        return this.EC.alertIsPresent();
+    }
+
+    isVisible(locator) {
+        return this.EC.visibilityOf(locator);
+    }
+
+    isNotVisible(locator) {
+        return this.EC.invisibilityOf(locator);
     }
 }
